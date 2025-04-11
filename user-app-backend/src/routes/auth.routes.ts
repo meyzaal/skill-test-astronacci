@@ -102,13 +102,13 @@ router.post('/login', loginValidation, validateRequest, async (req: AuthRequest,
 
     const user = await User.findOne({ email });
     if (!user) {
-      res.status(400).json({ message: 'Invalid credentials' });
+      res.status(400).json({ message: 'Invalid email or password' });
       return;
     }
 
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
-      res.status(400).json({ message: 'Invalid credentials' });
+      res.status(400).json({ message: 'Invalid email or password' });
       return;
     }
 
