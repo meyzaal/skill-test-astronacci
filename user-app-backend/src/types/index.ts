@@ -30,6 +30,11 @@ export interface LoginBody {
   password: string;
 }
 
+export interface ResetPasswordBody {
+  resetToken: string;
+  newPassword: string;
+}
+
 export interface UpdateProfileBody {
   name?: string;
   bio?: string;
