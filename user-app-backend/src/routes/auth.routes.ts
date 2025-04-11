@@ -1,14 +1,11 @@
 import { Router, Request, Response, RequestHandler, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
-import { User } from '../models/user.model';
+import { User, IUser } from '../models/user.model';
 import { authMiddleware } from '../middlewares/auth.middleware';
 import { body, validationResult } from 'express-validator';
 import { signToken } from '../utils/jwt';
 import { validateRequest } from '../middlewares/validation.middleware';
-import { IUser } from '../types';
-import { generateOtp, validateOtp } from '../services/otp.service';
-import { sendOtpEmail } from '../services/email.service';
 import { AuthRequest } from '../types';
+import crypto from 'crypto';
 
 const router = Router();
 
@@ -62,9 +59,8 @@ router.post('/register', registerValidation, validateRequest, async (req: AuthRe
       name,
       email,
       password,
-      avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random`,
-      isVerified: false
-    }) as IUser;
+      avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=random`
+    });
 
     await user.save();
 
@@ -76,7 +72,7 @@ router.post('/register', registerValidation, validateRequest, async (req: AuthRe
         name: user.name,
         email: user.email,
         avatar: user.avatar,
-        isVerified: user.isVerified
+        bio: user.bio
       },
       token
     });
@@ -116,11 +112,6 @@ router.post('/login', loginValidation, validateRequest, async (req: AuthRequest,
       return;
     }
 
-    if (!user.isVerified) {
-      res.status(403).json({ message: 'Please verify your email first' });
-      return;
-    }
-
     const token = signToken({ id: user._id.toString() });
 
     res.json({
@@ -129,8 +120,7 @@ router.post('/login', loginValidation, validateRequest, async (req: AuthRequest,
         name: user.name,
         email: user.email,
         avatar: user.avatar,
-        bio: user.bio,
-        isVerified: user.isVerified
+        bio: user.bio
       },
       token
     });
@@ -148,65 +138,7 @@ router.post('/logout', authMiddleware, async (req: AuthRequest, res: Response, n
   }
 });
 
-// Generate OTP for email verification
-router.post('/verify-email', authMiddleware, async (req: AuthRequest, res: Response): Promise<void> => {
-  try {
-    const userId = req.user?._id;
-    if (!userId) {
-      res.status(401).json({ message: 'Unauthorized' });
-      return;
-    }
-
-    const user = await User.findById(userId);
-    if (!user) {
-      res.status(404).json({ message: 'User not found' });
-      return;
-    }
-
-    if (user.isVerified) {
-      res.status(400).json({ message: 'Email already verified' });
-      return;
-    }
-
-    const otpToken = await generateOtp(userId, 'verify-email');
-    await sendOtpEmail({ email: user.email, name: user.name }, {
-      code: otpToken,
-      type: 'verify-email',
-      userId: userId.toString(),
-      expiresAt: new Date(Date.now() + 10 * 60 * 1000)
-    });
-    res.json({ message: 'OTP sent successfully' });
-  } catch (error) {
-    console.error('Error generating OTP:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
-
-// Validate OTP for email verification
-router.post('/verify-email/validate', authMiddleware, async (req: AuthRequest, res: Response): Promise<void> => {
-  try {
-    const { code } = req.body;
-    const userId = req.user?._id;
-    if (!userId || !code) {
-      res.status(400).json({ message: 'Missing required fields' });
-      return;
-    }
-
-    const isValid = await validateOtp(userId, code, 'verify-email');
-    if (!isValid) {
-      res.status(400).json({ message: 'Invalid or expired OTP' });
-      return;
-    }
-
-    await User.findByIdAndUpdate(userId, { isVerified: true });
-    res.json({ message: 'Email verified successfully' });
-  } catch (error) {
-    console.error('Error validating OTP:', error);
-    res.status(500).json({ message: 'Internal server error' });
-  }
-});
-
-// Generate OTP for password reset
+// Forgot password - generate reset token
 router.post('/forgot-password', async (req: AuthRequest, res: Response): Promise<void> => {
   try {
     const { email } = req.body;
@@ -221,46 +153,52 @@ router.post('/forgot-password', async (req: AuthRequest, res: Response): Promise
       return;
     }
 
-    const otpToken = await generateOtp(user._id.toString(), 'forgot-password');
-    await sendOtpEmail({ email: user.email, name: user.name }, {
-      code: otpToken,
-      type: 'forgot-password',
-      userId: user._id.toString(),
-      expiresAt: new Date(Date.now() + 10 * 60 * 1000)
+    // Generate reset token that expires in 10 minutes
+    const resetToken = crypto.randomBytes(32).toString('hex');
+    const resetTokenExpiry = new Date(Date.now() + 10 * 60 * 1000);
+
+    await User.findByIdAndUpdate(user._id, {
+      resetToken,
+      resetTokenExpiry
     });
-    res.json({ message: 'OTP sent successfully' });
+
+    res.json({ 
+      message: 'Password reset token generated',
+      resetToken
+    });
   } catch (error) {
-    console.error('Error generating OTP:', error);
+    console.error('Error generating reset token:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
 
-// Validate OTP for password reset
-router.post('/forgot-password/validate', async (req: AuthRequest, res: Response): Promise<void> => {
+// Reset password using token
+router.post('/reset-password', async (req: AuthRequest, res: Response): Promise<void> => {
   try {
-    const { email, code, newPassword } = req.body;
-    if (!email || !code || !newPassword) {
-      res.status(400).json({ message: 'Missing required fields' });
+    const { resetToken, newPassword } = req.body;
+    if (!resetToken || !newPassword) {
+      res.status(400).json({ message: 'Reset token and new password are required' });
       return;
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({
+      resetToken,
+      resetTokenExpiry: { $gt: new Date() }
+    });
+
     if (!user) {
-      res.status(404).json({ message: 'User not found' });
-      return;
-    }
-
-    const isValid = await validateOtp(user._id.toString(), code, 'forgot-password');
-    if (!isValid) {
-      res.status(400).json({ message: 'Invalid or expired OTP' });
+      res.status(400).json({ message: 'Invalid or expired reset token' });
       return;
     }
 
     user.password = newPassword;
+    user.resetToken = undefined;
+    user.resetTokenExpiry = undefined;
     await user.save();
+
     res.json({ message: 'Password reset successfully' });
   } catch (error) {
-    console.error('Error validating OTP:', error);
+    console.error('Error resetting password:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
