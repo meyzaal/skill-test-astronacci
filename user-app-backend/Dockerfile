@@ -4,17 +4,14 @@ FROM node:20-alpine
 # Set working directory
 WORKDIR /app
 
-# Print current directory and list files (for debugging)
-RUN pwd && ls -la
+# Copy all files from the current directory
+COPY . .
 
-# Copy package files
-COPY user-app-backend/package*.json ./
+# Move into the backend directory
+WORKDIR /app/user-app-backend
 
 # Install dependencies
 RUN npm install
-
-# Copy source code
-COPY user-app-backend/ ./
 
 # Build the application
 RUN npm run build
