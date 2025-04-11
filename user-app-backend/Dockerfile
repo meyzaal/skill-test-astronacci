@@ -1,18 +1,25 @@
+# Use Node.js LTS version
 FROM node:18-alpine
 
+# Set working directory
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
+# Copy package files first for better caching
+COPY user-app-backend/package*.json ./
 
-# Install dependencies
-RUN npm install
+# Install dependencies with Railway's cache format
+RUN --mount=type=cache,id=s/3f27754d-24f7-40ef-b843-9eb7d4de2037-node_modules/cache,target=/app/node_modules/.cache \
+    npm install
 
-# Copy source code
-COPY . .
+# Copy the rest of the application
+COPY user-app-backend/ ./
 
-# Build the application
-RUN npm run build
+# Build the application with Railway's cache format
+RUN --mount=type=cache,id=s/3f27754d-24f7-40ef-b843-9eb7d4de2037-node_modules/cache,target=/app/node_modules/.cache \
+    npm run build
 
-# Start the application
+# Expose the port the app runs on
+EXPOSE 5000
+
+# Command to run the application
 CMD ["npm", "start"] 
