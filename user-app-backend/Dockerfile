@@ -4,14 +4,15 @@ FROM node:20-alpine
 # Set working directory
 WORKDIR /app
 
-# Copy all files from the current directory
-COPY . .
+# Copy package files first for better caching
+COPY user-app-backend/package*.json ./
 
-# Move into the backend directory
-WORKDIR /app/user-app-backend
+# Install dependencies with cache
+RUN --mount=type=cache,target=/root/.npm \
+    npm install
 
-# Install dependencies
-RUN npm install
+# Copy the rest of the application
+COPY user-app-backend/ ./
 
 # Build the application
 RUN npm run build
