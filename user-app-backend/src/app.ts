@@ -4,7 +4,6 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
-import otpRoutes from './routes/otp.routes';
 
 dotenv.config();
 
@@ -17,7 +16,6 @@ app.use(express.json());
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
-app.use('/api/otp', otpRoutes);
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/user-app')
