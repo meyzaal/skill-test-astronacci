@@ -1,6 +1,17 @@
-import { Schema, model } from 'mongoose';
-import { IUser } from '../types';
+import { Schema, model, Document, Types } from 'mongoose';
 import bcrypt from 'bcryptjs';
+
+export interface IUser extends Document {
+  _id: Types.ObjectId;
+  name: string;
+  email: string;
+  password: string;
+  avatar?: string;
+  bio?: string;
+  resetToken?: string;
+  resetTokenExpiry?: Date;
+  comparePassword(candidatePassword: string): Promise<boolean>;
+}
 
 const userSchema = new Schema<IUser>({
   name: { type: String, required: true },
@@ -8,7 +19,10 @@ const userSchema = new Schema<IUser>({
   password: { type: String, required: true },
   avatar: { type: String },
   bio: { type: String },
-  isVerified: { type: Boolean, default: false }
+  resetToken: { type: String },
+  resetTokenExpiry: { type: Date }
+}, {
+  timestamps: true
 });
 
 // Hash password before saving
