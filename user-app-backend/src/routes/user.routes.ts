@@ -5,6 +5,7 @@ import upload from '../config/multer';
 import cloudinary from '../config/cloudinary';
 import fs from 'fs';
 import path from 'path';
+import { AuthRequest } from '../types';
 
 const router = Router();
 
@@ -13,14 +14,8 @@ interface UpdateProfileBody {
   bio?: string;
 }
 
-interface AuthRequest extends Request {
-  user: {
-    id: string;
-  };
-}
-
 // List Users with Search & Pagination
-router.get('/users', authMiddleware, async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+router.get('/users', authMiddleware, async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { search, page = '1', limit = '10' } = req.query;
     const pageNum = parseInt(page as string);
@@ -46,7 +41,14 @@ router.get('/users', authMiddleware, async (req: Request, res: Response, next: N
     ]);
 
     res.json({
-      users,
+      users: users.map(user => ({
+        id: user._id.toString(),
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+        bio: user.bio,
+        isMe: user._id.toString() === req.user?._id
+      })),
       pagination: {
         total,
         page: pageNum,
@@ -60,21 +62,19 @@ router.get('/users', authMiddleware, async (req: Request, res: Response, next: N
 });
 
 // Edit Profile
-router.put('/users/:id', authMiddleware, upload.single('avatar'), async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+router.put('/users/me', authMiddleware, upload.single('avatar'), async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const { id } = req.params;
     const { name, bio } = req.body as UpdateProfileBody;
-    const authReq = req as AuthRequest;
+    const userId = req.user?._id;
 
-    // Check if user exists and is authorized
-    const user = await User.findById(id).lean();
-    if (!user) {
-      res.status(404).json({ message: 'User not found' });
+    if (!userId) {
+      res.status(401).json({ message: 'Unauthorized' });
       return;
     }
 
-    if (user._id.toString() !== authReq.user.id) {
-      res.status(403).json({ message: 'Not authorized' });
+    const user = await User.findById(userId);
+    if (!user) {
+      res.status(404).json({ message: 'User not found' });
       return;
     }
 
@@ -102,32 +102,64 @@ router.put('/users/:id', authMiddleware, upload.single('avatar'), async (req: Re
       }
     }
 
-    await User.findByIdAndUpdate(id, user);
+    await user.save();
 
     res.json({
       user: {
-        id: user._id,
+        id: user._id.toString(),
         name: user.name,
         email: user.email,
         avatar: user.avatar,
-        bio: user.bio,
-      },
+        bio: user.bio
+      }
     });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Server error' });
+    next(error);
   }
 });
 
 // Get User Detail
-router.get('/users/:id', async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+router.get('/users/:id', authMiddleware, async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
     const user = await User.findById(req.params.id).select('-password');
     if (!user) {
       res.status(404).json({ message: 'User not found' });
       return;
     }
-    res.json(user);
+
+    res.json({
+      user: {
+        id: user._id.toString(),
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+        bio: user.bio,
+        isMe: user._id.toString() === req.user?._id
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Get current user profile
+router.get('users/me', authMiddleware, async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    const user = await User.findById(req.user?._id).select('-password -resetToken -resetTokenExpiry');
+    if (!user) {
+      res.status(404).json({ message: 'User not found' });
+      return;
+    }
+
+    res.json({
+      user: {
+        id: user._id.toString(),
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+        bio: user.bio
+      }
+    });
   } catch (error) {
     next(error);
   }
