@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:user_app_mobile/app/app.dart';
 import 'package:user_app_mobile/counter/counter.dart';
 import 'package:user_app_mobile/l10n/l10n.dart';
 
@@ -7,13 +8,11 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const theme = AppTheme();
+
     return MaterialApp(
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        ),
-        useMaterial3: true,
-      ),
+      theme: theme.light(),
+      darkTheme: theme.dark(),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       home: const CounterPage(),

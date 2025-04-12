@@ -1,0 +1,27 @@
+name: user_app_api
+description: A Very Good Project created by Very Good CLI.
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+
+dev_dependencies:
+  build_runner: ^2.4.15
+  freezed: ^3.0.6
+  json_serializable: ^6.9.4
+  mocktail: ^1.0.4
+  test: ^1.25.15
+  very_good_analysis: ^7.0.0
+  
+dependencies:
+  dio: ^5.8.0+1
+  freezed_annotation: ^3.0.0
+  fresh_dio: ^0.4.3
+  http_parser: ^4.1.2
+  json_annotation: ^4.9.0
+  mime: ^2.0.0
+  path: ^1.9.1
+  token_local_storage: 
+    path: ../token_local_storage
+  ua_client_hints: ^1.4.1
