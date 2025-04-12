@@ -99,7 +99,7 @@ router.put('/users/me', authMiddleware, async (req: AuthRequest, res: Response, 
 });
 
 // Update Avatar
-router.post('/users/me/avatar', authMiddleware, upload.single('avatar'), async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
+router.put('/users/me/avatar', authMiddleware, upload.single('avatar'), async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
     const userId = req.user?._id;
 
