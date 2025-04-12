@@ -62,7 +62,7 @@ router.get('/users', authMiddleware, async (req: AuthRequest, res: Response, nex
 });
 
 // Edit Profile
-router.put('/users/me', authMiddleware, upload.single('avatar'), async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
+router.put('/users/me', authMiddleware, async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { name, bio } = req.body as UpdateProfileBody;
     const userId = req.user?._id;
@@ -82,26 +82,6 @@ router.put('/users/me', authMiddleware, upload.single('avatar'), async (req: Aut
     if (name) user.name = name;
     if (bio) user.bio = bio;
 
-    // Handle avatar upload if present
-    if (req.file) {
-      try {
-        // Upload to Cloudinary
-        const result = await cloudinary.uploader.upload(req.file.path, {
-          folder: 'avatars',
-        });
-
-        // Update avatar URL
-        user.avatar = result.secure_url;
-
-        // Delete temporary file
-        fs.unlinkSync(req.file.path);
-      } catch (error) {
-        console.error('Error uploading to Cloudinary:', error);
-        res.status(500).json({ message: 'Error uploading avatar' });
-        return;
-      }
-    }
-
     await user.save();
 
     res.json({
@@ -113,6 +93,68 @@ router.put('/users/me', authMiddleware, upload.single('avatar'), async (req: Aut
         bio: user.bio
       }
     });
+  } catch (error) {
+    next(error);
+  }
+});
+
+// Update Avatar
+router.put('/users/me/avatar', authMiddleware, upload.single('avatar'), async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    const userId = req.user?._id;
+
+    if (!userId) {
+      res.status(401).json({ message: 'Unauthorized' });
+      return;
+    }
+
+    const user = await User.findById(userId);
+    if (!user) {
+      res.status(404).json({ message: 'User not found' });
+      return;
+    }
+
+    try {
+      // Delete old avatar from Cloudinary if exists
+      if (user.avatarPublicId) {
+        await cloudinary.uploader.destroy(user.avatarPublicId);
+        user.avatar = undefined;
+        user.avatarPublicId = undefined;
+      }
+
+      // If a new file is provided, upload it
+      if (req.file) {
+        const result = await cloudinary.uploader.upload(req.file.path, {
+          folder: 'avatars',
+        });
+
+        // Update user's avatar information
+        user.avatar = result.secure_url;
+        user.avatarPublicId = result.public_id;
+
+        // Delete temporary file
+        fs.unlinkSync(req.file.path);
+      }
+
+      await user.save();
+
+      res.json({
+        user: {
+          id: user._id.toString(),
+          name: user.name,
+          email: user.email,
+          avatar: user.avatar,
+          bio: user.bio
+        }
+      });
+    } catch (error) {
+      console.error('Error handling avatar:', error);
+      // Clean up temporary file in case of error
+      if (req.file) {
+        fs.unlinkSync(req.file.path);
+      }
+      res.status(500).json({ message: 'Error updating avatar' });
+    }
   } catch (error) {
     next(error);
   }
