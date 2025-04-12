@@ -7,18 +7,39 @@ environment:
   sdk: ^3.5.0
 
 dependencies:
+  authentication_repository:
+    path: packages/authentication_repository
   bloc: ^8.1.4
+  cached_network_image: ^3.4.1
+  collection: ^1.19.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6
   flutter_localizations:
     sdk: flutter
+  freezed_annotation: ^3.0.0
+  go_router: ^14.8.1
+  hydrated_bloc: ^9.1.5
+  image_cropper: ^9.1.0
+  image_picker: ^1.1.2
   intl: ^0.19.0
+  json_annotation: ^4.9.0
+  path_provider: ^2.1.5
+  stream_listener:
+    path: packages/stream_listener
+  token_local_storage:
+    path: packages/token_local_storage
+  user_app_api:
+    path: packages/user_app_api
 
 dev_dependencies:
   bloc_test: ^9.1.7
+  build_runner: ^2.4.15
   flutter_test:
     sdk: flutter
+  freezed: ^3.0.6
+  go_router_builder: ^2.8.2
+  json_serializable: ^6.9.4
   mocktail: ^1.0.4
   very_good_analysis: ^6.0.0
 
