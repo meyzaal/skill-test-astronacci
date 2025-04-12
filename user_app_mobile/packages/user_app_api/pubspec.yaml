@@ -21,7 +21,6 @@ dependencies:
   http_parser: ^4.1.2
   json_annotation: ^4.9.0
   mime: ^2.0.0
-  path: ^1.9.1
+  path: ^1.9.0
   token_local_storage: 
     path: ../token_local_storage
-  ua_client_hints: ^1.4.1

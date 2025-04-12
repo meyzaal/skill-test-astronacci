@@ -1,5 +1,11 @@
 import 'package:user_app_api/user_app_api.dart';
 
+enum AuthenticationStatus {
+  unknown,
+  signedIn,
+  signedOut,
+}
+
 /// {@template authentication_repository}
 /// A Very Good Project created by Very Good CLI.
 /// {@endtemplate}
@@ -10,6 +16,14 @@ class AuthenticationRepository {
   }) : _userAppApi = userAppApi;
 
   final UserAppApi _userAppApi;
+
+  Stream<AuthenticationStatus> get status {
+    return _userAppApi.authenticationStatus.map((status) {
+      if (status.isAuthenticated) return AuthenticationStatus.signedIn;
+      if (status.isUnauthenticated) return AuthenticationStatus.signedOut;
+      return AuthenticationStatus.unknown;
+    });
+  }
 
   Future<void> signIn({
     required String email,

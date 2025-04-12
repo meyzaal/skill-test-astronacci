@@ -30,7 +30,8 @@ class UserAppApi {
     );
 
     _httpClient
-      ..options.baseUrl = 'skill-test-astronacci-production.up.railway.app'
+      ..options.baseUrl =
+          'https://skill-test-astronacci-production.up.railway.app'
       ..interceptors.add(_fresh)
       ..interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
   }
@@ -109,4 +110,10 @@ class UserAppApi {
       },
     );
   }
+}
+
+extension AuthenticationStatusX on AuthenticationStatus {
+  bool get isInitial => this == AuthenticationStatus.initial;
+  bool get isAuthenticated => this == AuthenticationStatus.authenticated;
+  bool get isUnauthenticated => this == AuthenticationStatus.unauthenticated;
 }

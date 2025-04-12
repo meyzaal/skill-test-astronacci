@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fresh_dio/fresh_dio.dart';
 import 'package:hive_ce/hive.dart';
 // ignore: implementation_imports
@@ -19,11 +21,13 @@ class TokenLocalStorage extends TokenStorage<CachedOAuth2Token> {
   @visibleForTesting
   static late HiveInterface hive;
 
-  static Future<TokenLocalStorage> create({required String storagePath}) async {
+  static Future<TokenLocalStorage> create({
+    required Directory storageDirectory,
+  }) async {
     return _lock.synchronized(() async {
       hive = HiveImpl();
       hive
-        ..init(storagePath)
+        ..init(storageDirectory.path)
         ..registerAdapters();
 
       final box = await hive.openBox<CachedOAuth2Token>(_key);
