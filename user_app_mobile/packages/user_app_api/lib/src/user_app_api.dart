@@ -1,5 +1,10 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:fresh_dio/fresh_dio.dart';
+import 'package:http_parser/http_parser.dart';
+import 'package:mime/mime.dart';
+import 'package:path/path.dart';
 import 'package:token_local_storage/token_local_storage.dart';
 import 'package:user_app_api/user_app_api.dart';
 
@@ -110,10 +115,77 @@ class UserAppApi {
       },
     );
   }
+
+  Future<ProfileResponse> getProfile() async {
+    final response = await _httpClient.get<dynamic>('/api/users/me');
+    return ProfileResponse.fromJson(response.data as JSON);
+  }
+
+  Future<UserListResponse> getUserList({
+    int? page,
+    int? limit,
+    String? search,
+  }) async {
+    final response = await _httpClient.get<dynamic>(
+      '/api/users',
+      queryParameters: {
+        if (page != null) 'page': page,
+        if (limit != null) 'limit': limit,
+        if (search != null) 'search': search,
+      },
+    );
+    return UserListResponse.fromJson(response.data as JSON);
+  }
+
+  Future<UserDetailResponse> getUserDetail(String userId) async {
+    final response = await _httpClient.get<dynamic>('/api/users/$userId');
+    return UserDetailResponse.fromJson(response.data as JSON);
+  }
+
+  Future<void> updateProfile({
+    String? name,
+    String? bio,
+  }) async {
+    if (name == null && bio == null) return;
+    await _httpClient.put<dynamic>(
+      '/api/users/me',
+      data: {
+        if (name != null) 'name': name,
+        if (bio != null) 'bio': bio,
+      },
+    );
+  }
+
+  Future<void> updateAvatar(File? file) async {
+    Object data;
+
+    if (file == null) {
+      data = {'avatar': null};
+    } else {
+      final avatar = await MultipartFile.fromFile(
+        file.path,
+        filename: basename(file.path),
+        contentType: file.mediaType,
+      );
+      data = FormData.fromMap({'avatar': avatar});
+    }
+    await _httpClient.put<dynamic>(
+      '/api/users/me/avatar',
+      data: data,
+    );
+  }
 }
 
 extension AuthenticationStatusX on AuthenticationStatus {
   bool get isInitial => this == AuthenticationStatus.initial;
   bool get isAuthenticated => this == AuthenticationStatus.authenticated;
   bool get isUnauthenticated => this == AuthenticationStatus.unauthenticated;
+}
+
+extension on File {
+  MediaType get mediaType {
+    final mimeType = lookupMimeType(path) ?? 'application/octet-stream';
+    final parts = mimeType.split('/');
+    return MediaType(parts[0], parts[1]);
+  }
 }

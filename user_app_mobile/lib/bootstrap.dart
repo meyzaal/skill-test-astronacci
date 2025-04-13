@@ -8,6 +8,7 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:user_app_api/user_app_api.dart';
 import 'package:user_app_mobile/app/app.dart';
+import 'package:user_repository/user_repository.dart';
 
 class AppBlocObserver extends BlocObserver {
   const AppBlocObserver();
@@ -46,10 +47,12 @@ Future<void> bootstrap({required UserAppApi userAppApi}) async {
 
   final authenticationRepository =
       AuthenticationRepository(userAppApi: userAppApi);
+  final userRepository = UserRepository(userAppApi: userAppApi);
 
   runApp(
     App(
       authenticationRepository: authenticationRepository,
+      userRepository: userRepository,
     ),
   );
 }

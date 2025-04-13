@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:user_app_mobile/users/users.dart';
+import 'package:user_repository/user_repository.dart';
 
 class UsersPage extends StatelessWidget {
   const UsersPage({super.key});
@@ -6,11 +9,11 @@ class UsersPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Users'),
-      ),
-      body: const Center(
-        child: Text('Users'),
+      body: BlocProvider(
+        create: (context) => UsersBloc(
+          userRepository: context.read<UserRepository>(),
+        )..add(const UsersEvent.load(forceRefresh: true)),
+        child: const UsersList(),
       ),
     );
   }

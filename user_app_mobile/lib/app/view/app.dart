@@ -5,18 +5,22 @@ import 'package:go_router/go_router.dart';
 import 'package:user_app_mobile/app/app.dart';
 import 'package:user_app_mobile/authentication/authentication.dart';
 import 'package:user_app_mobile/l10n/l10n.dart';
+import 'package:user_repository/user_repository.dart';
 
 class App extends StatelessWidget {
   App({
     required AuthenticationRepository authenticationRepository,
+    required UserRepository userRepository,
     super.key,
   })  : _authenticationBloc = AuthenticationBloc(
           authenticationRepository: authenticationRepository,
         ),
-        _authenticationRepository = authenticationRepository;
+        _authenticationRepository = authenticationRepository,
+        _userRepository = userRepository;
 
   final AuthenticationBloc _authenticationBloc;
   final AuthenticationRepository _authenticationRepository;
+  final UserRepository _userRepository;
 
   late final GoRouter _router = AppRouter(
     authenticationBloc: _authenticationBloc,
@@ -27,6 +31,7 @@ class App extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider.value(value: _authenticationRepository),
+        RepositoryProvider(create: (context) => _userRepository),
       ],
       child: MultiBlocProvider(
         providers: [

@@ -1,5 +1,13 @@
 import 'package:user_app_api/user_app_api.dart';
 
+class SignInInvalidCredentialsException implements Exception {}
+
+class SignUpEmailAlreadyExistsException implements Exception {}
+
+class ForgotPasswordUserNotFoundException implements Exception {}
+
+class ResetPasswordInvalidTokenException implements Exception {}
+
 enum AuthenticationStatus {
   unknown,
   signedIn,
@@ -29,10 +37,18 @@ class AuthenticationRepository {
     required String email,
     required String password,
   }) async {
-    await _userAppApi.login(
-      email: email,
-      password: password,
-    );
+    try {
+      await _userAppApi.login(email: email, password: password);
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.badResponse) {
+        final json = e.response?.data as Map<String, dynamic>?;
+        final message = json?['message'] as String?;
+
+        if (message == 'Invalid email or password') {
+          throw SignInInvalidCredentialsException();
+        }
+      }
+    }
   }
 
   Future<void> signOut() async {
@@ -44,10 +60,60 @@ class AuthenticationRepository {
     required String password,
     required String name,
   }) async {
-    await _userAppApi.register(
-      email: email,
-      password: password,
-      name: name,
-    );
+    try {
+      await _userAppApi.register(
+        email: email,
+        password: password,
+        name: name,
+      );
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.badResponse) {
+        final json = e.response?.data as Map<String, dynamic>?;
+        final message = json?['message'] as String?;
+
+        if (message == 'Email already in use') {
+          throw SignUpEmailAlreadyExistsException();
+        }
+      }
+    }
+  }
+
+  Future<String> forgotPassword({
+    required String email,
+  }) async {
+    try {
+      return await _userAppApi.forgotPassword(email);
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.badResponse) {
+        final json = e.response?.data as Map<String, dynamic>?;
+        final message = json?['message'] as String?;
+
+        if (message == 'User not found') {
+          throw ForgotPasswordUserNotFoundException();
+        }
+      }
+      rethrow;
+    }
+  }
+
+  Future<void> resetPassword({
+    required String password,
+    required String resetToken,
+  }) async {
+    try {
+      await _userAppApi.resetPassword(
+        password: password,
+        resetToken: resetToken,
+      );
+    } on DioException catch (e) {
+      if (e.type == DioExceptionType.badResponse) {
+        final json = e.response?.data as Map<String, dynamic>?;
+        final message = json?['message'] as String?;
+
+        if (message == 'Invalid or expired reset token') {
+          throw ResetPasswordInvalidTokenException();
+        }
+      }
+    }
   }
 }

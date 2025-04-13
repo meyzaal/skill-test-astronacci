@@ -1,0 +1,307 @@
+{
+    "@@locale": "id",
+    "counterAppBarTitle": "Penghitung",
+    "@counterAppBarTitle": {
+        "description": "Text yang ditampilkan di AppBar halaman Penghitung"
+    },
+    "signInEmailLabel": "Email",
+    "@signInEmailLabel": {
+        "description": "Text yang ditampilkan di halaman Masuk di label Email"
+    },
+    "signInEmailInvalidError": "Email tidak valid",
+    "@signInEmailInvalidError": {
+        "description": "Text yang ditampilkan di halaman Masuk di pesan kesalahan Email tidak valid"
+    },
+    "signInEmailRequiredError": "Email harus diisi",
+    "@signInEmailRequiredError": {
+        "description": "Text yang ditampilkan di halaman Masuk di pesan kesalahan Email harus diisi"
+    },
+    "signInPasswordLabel": "Kata sandi",
+    "@signInPasswordLabel": {
+        "description": "Text yang ditampilkan di halaman Masuk di label Kata sandi"
+    },
+    "signInPasswordRequiredError": "Kata sandi harus diisi",
+    "@signInPasswordRequiredError": {
+        "description": "Text yang ditampilkan di halaman Masuk di pesan kesalahan Kata sandi harus diisi"
+    },
+    "signInShowPasswordLabel": "Tampilkan kata sandi",
+    "@signInShowPasswordLabel": {
+        "description": "Text yang ditampilkan di halaman Masuk di label Tampilkan kata sandi"
+    },
+    "signInSubmitButtonText": "Masuk",
+    "@signInSubmitButtonText": {
+        "description": "Text yang ditampilkan di halaman Masuk di tombol Masuk"
+    },
+    "signInInvalidCredentialsError": "Email atau kata sandi tidak valid",
+    "@signInInvalidCredentialsError": {
+        "description": "Text yang ditampilkan di halaman Masuk di pesan kesalahan Email atau kata sandi tidak valid"
+    },
+    "signInUnknownError": "Terjadi kesalahan yang tidak diketahui",
+    "@signInUnknownError": {
+        "description": "Text yang ditampilkan di halaman Masuk di pesan kesalahan tidak diketahui"
+    },
+    "signInSuccessMessage": "Berhasil masuk",
+    "@signInSuccessMessage": {
+        "description": "Text yang ditampilkan di halaman Masuk di pesan sukses"
+    },
+    "signInCreateAccountButtonText": "Buat akun",
+    "@signInCreateAccountButtonText": {
+        "description": "Text yang ditampilkan di halaman Masuk di tombol Buat akun"
+    },
+    "signInForgotPasswordButtonText": "Lupa kata sandi?",
+    "@signInForgotPasswordButtonText": {
+        "description": "Text yang ditampilkan di halaman Masuk di tombol Lupa kata sandi"
+    },
+    "signUpAppBarTitle": "Buat akun",
+    "@signUpAppBarTitle": {
+        "description": "Text yang ditampilkan di AppBar halaman Buat akun"
+    },
+    "signUpNameLabel": "Nama",
+    "@signUpNameLabel": {
+        "description": "Text yang ditampilkan di halaman Buat akun di label Nama"
+    },
+    "signUpNameRequiredError": "Nama harus diisi",
+    "@signUpNameRequiredError": {
+        "description": "Text yang ditampilkan di halaman Buat akun di pesan kesalahan Nama harus diisi"
+    },
+    "signUpNameInvalidError": "Nama tidak valid",
+    "@signUpNameInvalidError": {
+        "description": "Text yang ditampilkan di halaman Buat akun di pesan kesalahan Nama tidak valid"
+    },
+    "signUpEmailLabel": "Email",
+    "@signUpEmailLabel": {
+        "description": "Text yang ditampilkan di halaman Buat akun di label Email"
+    },
+    "signUpEmailRequiredError": "Email harus diisi",
+    "@signUpEmailRequiredError": {
+        "description": "Text yang ditampilkan di halaman Buat akun di pesan kesalahan Email harus diisi"
+    },
+    "signUpEmailInvalidError": "Email tidak valid",
+    "@signUpEmailInvalidError": {
+        "description": "Text yang ditampilkan di halaman Buat akun di pesan kesalahan Email tidak valid"
+    },
+    "signUpPasswordLabel": "Kata sandi",
+    "@signUpPasswordLabel": {
+        "description": "Text yang ditampilkan di halaman Buat akun di label Kata sandi"
+    },
+    "signUpPasswordHelper": "Kata sandi harus terdiri dari 6 karakter atau lebih, mengandung huruf besar, huruf kecil, dan angka",
+    "@signUpPasswordHelper": {
+        "description": "Text yang ditampilkan di halaman Buat akun di pesan bantuan Kata sandi"
+    },
+    "signUpPasswordRequiredError": "Kata sandi harus diisi",
+    "@signUpPasswordRequiredError": {
+        "description": "Text yang ditampilkan di halaman Buat akun di pesan kesalahan Kata sandi harus diisi"
+    },
+    "signUpPasswordInvalidError": "Kata sandi lemah",
+    "@signUpPasswordInvalidError": {
+        "description": "Text yang ditampilkan di halaman Buat akun di pesan kesalahan Kata sandi lemah"
+    },
+    "signUpConfirmedPasswordLabel": "Konfirmasi kata sandi",
+    "@signUpConfirmedPasswordLabel": {
+        "description": "Text yang ditampilkan di halaman Buat akun di label Konfirmasi kata sandi"
+    },
+    "signUpConfirmedPasswordInvalidError": "Kata sandi tidak cocok",
+    "@signUpConfirmedPasswordInvalidError": {
+        "description": "Text yang ditampilkan di halaman Buat akun di pesan kesalahan Kata sandi tidak cocok"
+    },
+    "signUpShowPasswordLabel": "Tampilkan kata sandi",
+    "@signUpShowPasswordLabel": {
+        "description": "Text yang ditampilkan di halaman Buat akun di label Tampilkan kata sandi"
+    },
+    "signUpSubmitButtonText": "Buat akun",
+    "@signUpSubmitButtonText": {
+        "description": "Text yang ditampilkan di halaman Buat akun di tombol Buat akun"
+    },
+    "signUpSuccessMessage": "Berhasil membuat akun",
+    "@signUpSuccessMessage": {
+        "description": "Text yang ditampilkan di halaman Buat akun di pesan sukses"
+    },
+    "signUpEmailAlreadyInUseError": "Email sudah digunakan",
+    "@signUpEmailAlreadyInUseError": {
+        "description": "Text yang ditampilkan di halaman Buat akun di pesan kesalahan Email sudah digunakan"
+    },
+    "signUpUnknownError": "Terjadi kesalahan yang tidak diketahui",
+    "@signUpUnknownError": {
+        "description": "Text yang ditampilkan di halaman Buat akun di pesan kesalahan yang tidak diketahui"
+    },
+    "forgotPasswordAppBarTitle": "Lupa kata sandi",
+    "@forgotPasswordAppBarTitle": {
+        "description": "Text yang ditampilkan di AppBar halaman Lupa kata sandi"
+    },
+    "forgotPasswordEmailLabel": "Email",
+    "@forgotPasswordEmailLabel": {
+        "description": "Text yang ditampilkan di halaman Lupa kata sandi di label Email"
+    },
+    "forgotPasswordEmailRequiredError": "Email harus diisi",
+    "@forgotPasswordEmailRequiredError": {
+        "description": "Text yang ditampilkan di halaman Lupa kata sandi di pesan kesalahan Email harus diisi"
+    },
+    "forgotPasswordEmailInvalidError": "Email tidak valid",
+    "@forgotPasswordEmailInvalidError": {
+        "description": "Text yang ditampilkan di halaman Lupa kata sandi di pesan kesalahan Email tidak valid"
+    },
+    "forgotPasswordSubmitButtonText": "Kirim",
+    "@forgotPasswordSubmitButtonText": {
+        "description": "Text yang ditampilkan di halaman Lupa kata sandi di tombol Kirim"
+    },
+    "forgotPasswordUserNotFoundError": "Pengguna tidak ditemukan",
+    "@forgotPasswordUserNotFoundError": {
+        "description": "Text yang ditampilkan di halaman Lupa kata sandi di pesan kesalahan Pengguna tidak ditemukan"
+    },
+    "forgotPasswordUnknownError": "Terjadi kesalahan yang tidak diketahui",
+    "@forgotPasswordUnknownError": {
+        "description": "Text yang ditampilkan di halaman Lupa kata sandi di pesan kesalahan yang tidak diketahui"
+    },
+    "resetPasswordAppBarTitle": "Atur ulang kata sandi",
+    "@resetPasswordAppBarTitle": {
+        "description": "Text yang ditampilkan di AppBar halaman Atur ulang kata sandi"
+    },
+    "resetPasswordPasswordLabel": "Kata sandi",
+    "@resetPasswordPasswordLabel": {
+        "description": "Text yang ditampilkan di halaman Atur ulang kata sandi di label Kata sandi"
+    },
+    "resetPasswordPasswordHelper": "Kata sandi harus terdiri dari 6 karakter atau lebih, mengandung huruf besar, huruf kecil, dan angka",
+    "@resetPasswordPasswordHelper": {
+        "description": "Text yang ditampilkan di halaman Atur ulang kata sandi di pesan bantuan Kata sandi"
+    },
+    "resetPasswordPasswordRequiredError": "Kata sandi harus diisi",
+    "@resetPasswordPasswordRequiredError": {
+        "description": "Text yang ditampilkan di halaman Atur ulang kata sandi di pesan kesalahan Kata sandi harus diisi"
+    },
+    "resetPasswordPasswordInvalidError": "Kata sandi lemah",
+    "@resetPasswordPasswordInvalidError": {
+        "description": "Text yang ditampilkan di halaman Atur ulang kata sandi di pesan kesalahan Kata sandi lemah"
+    },
+    "resetPasswordConfirmedPasswordLabel": "Konfirmasi kata sandi",
+    "@resetPasswordConfirmedPasswordLabel": {
+        "description": "Text yang ditampilkan di halaman Atur ulang kata sandi di label Konfirmasi kata sandi"
+    },
+    "resetPasswordConfirmedPasswordInvalidError": "Kata sandi tidak cocok",
+    "@resetPasswordConfirmedPasswordInvalidError": {
+        "description": "Text yang ditampilkan di halaman Atur ulang kata sandi di pesan kesalahan Kata sandi tidak cocok"
+    },
+    "resetPasswordShowPasswordLabel": "Tampilkan kata sandi",
+    "@resetPasswordShowPasswordLabel": {
+        "description": "Text yang ditampilkan di halaman Atur ulang kata sandi di label Tampilkan kata sandi"
+    },
+    "resetPasswordSubmitButtonText": "Atur ulang kata sandi",
+    "@resetPasswordSubmitButtonText": {
+        "description": "Text yang ditampilkan di halaman Atur ulang kata sandi di tombol Atur ulang kata sandi"
+    },
+    "resetPasswordInvalidTokenError": "Token tidak valid",
+    "@resetPasswordInvalidTokenError": {
+        "description": "Text yang ditampilkan di halaman Atur ulang kata sandi di pesan kesalahan Token tidak valid"
+    },
+    "resetPasswordUnknownError": "Terjadi kesalahan yang tidak diketahui",
+    "@resetPasswordUnknownError": {
+        "description": "Text yang ditampilkan di halaman Atur ulang kata sandi di pesan kesalahan yang tidak diketahui"
+    },
+    "resetPasswordSuccessMessage": "Kata sandi berhasil diatur ulang",
+    "@resetPasswordSuccessMessage": {
+        "description": "Text yang ditampilkan di halaman Atur ulang kata sandi di pesan sukses"
+    },
+    "usersAppBarTitle": "Pengguna",
+    "@usersAppBarTitle": {
+        "description": "Text yang ditampilkan di AppBar halaman Pengguna"
+    },
+    "usersFailureMessage": "Gagal memuat pengguna",
+    "@usersFailureMessage": {
+        "description": "Text yang ditampilkan di halaman Pengguna di pesan kesalahan Gagal memuat pengguna"
+    },
+    "usersEmptyMessage": "Tidak ada pengguna",
+    "@usersEmptyMessage": {
+        "description": "Text yang ditampilkan di halaman Pengguna di pesan tidak ada pengguna"
+    },
+    "usersSearchHint": "Cari pengguna",
+    "@usersSearchHint": {
+        "description": "Text yang ditampilkan di halaman Pengguna di label Cari pengguna"
+    },
+    "userDetailsAppBarTitle": "Detail pengguna",
+    "@userDetailsAppBarTitle": {
+        "description": "Text yang ditampilkan di AppBar halaman Detail pengguna"
+    },
+    "userDetailsFailureMessage": "Gagal memuat detail pengguna",
+    "@userDetailsFailureMessage": {
+        "description": "Text yang ditampilkan di halaman Detail pengguna di pesan kesalahan Gagal memuat detail pengguna"
+    },
+    "userDetailsNameLabel": "Nama",
+    "@userDetailsNameLabel": {
+        "description": "Text yang ditampilkan di halaman Detail pengguna di label Nama"
+    },
+    "userDetailsEmailLabel": "Email",
+    "@userDetailsEmailLabel": {
+        "description": "Text yang ditampilkan di halaman Detail pengguna di label Email"
+    },
+    "userDetailsBioLabel": "Bio",
+    "@userDetailsBioLabel": {
+        "description": "Text yang ditampilkan di halaman Detail pengguna di label Bio"
+    },
+    "profileAppBarTitle": "Profil",
+    "@profileAppBarTitle": {
+        "description": "Text yang ditampilkan di AppBar halaman Profil"
+    },
+    "profileFailureMessage": "Gagal memuat profil",
+    "@profileFailureMessage": {
+        "description": "Text yang ditampilkan di halaman Profil di pesan kesalahan Gagal memuat profil"
+    },
+    "profileNameLabel": "Nama",
+    "@profileNameLabel": {
+        "description": "Text yang ditampilkan di halaman Profil di label Nama"
+    },
+    "profileEmailLabel": "Email",
+    "@profileEmailLabel": {
+        "description": "Text yang ditampilkan di halaman Profil di label Email"
+    },
+    "profileBioLabel": "Bio",
+    "@profileBioLabel": {
+        "description": "Text yang ditampilkan di halaman Profil di label Bio"
+    },
+    "profileEditButtonText": "Edit profil",
+    "@profileEditButtonText": {
+        "description": "Text yang ditampilkan di halaman Profil di tombol Edit"
+    },
+    "editProfileAppBarTitle": "Edit profil",
+    "@editProfileAppBarTitle": {
+        "description": "Text yang ditampilkan di AppBar halaman Edit profil"
+    },
+    "editProfileNameLabel": "Nama",
+    "@editProfileNameLabel": {
+        "description": "Text yang ditampilkan di halaman Edit profil di label Nama"
+    },
+    "editProfileBioLabel": "Bio",
+    "@editProfileBioLabel": {
+        "description": "Text yang ditampilkan di halaman Edit profil di label Bio"
+    },
+    "editProfileSaveButtonText": "Simpan",
+    "@editProfileSaveButtonText": {
+        "description": "Text yang ditampilkan di halaman Edit profil di tombol Simpan"
+    },
+    "editProfileSuccessMessage": "Profil berhasil diubah",
+    "@editProfileSuccessMessage": {
+        "description": "Text yang ditampilkan di halaman Edit profil di pesan sukses"
+    },
+    "editProfileFailureMessage": "Gagal mengubah profil",
+    "@editProfileFailureMessage": {
+        "description": "Text yang ditampilkan di halaman Edit profil di pesan kesalahan Gagal mengubah profil"
+    },
+    "updateAvatarTitle": "Ubah Avatar",
+    "@updateAvatarTitle": {
+        "description": "Text yang ditampilkan di halaman Edit profil di judul Bottom Sheet Ubah Avatar"
+    },
+    "updateAvatarFailureMessage": "Gagal mengubah avatar",
+    "@updateAvatarFailureMessage": {
+        "description": "Text yang ditampilkan di halaman Edit profil di pesan kesalahan Gagal mengubah avatar"
+    },
+    "updateAvatarSuccessMessage": "Avatar berhasil diubah",
+    "@updateAvatarSuccessMessage": {
+        "description": "Text yang ditampilkan di halaman Edit profil di pesan sukses Avatar berhasil diubah"
+    },
+    "settingsAppBarTitle": "Pengaturan",
+    "@settingsAppBarTitle": {
+        "description": "Text yang ditampilkan di AppBar halaman Pengaturan"
+    },
+    "settingsSignOutButtonText": "Keluar",
+    "@settingsSignOutButtonText": {
+        "description": "Text yang ditampilkan di halaman Pengaturan di tombol Keluar"
+    }
+}

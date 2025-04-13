@@ -26,6 +26,7 @@ class HomePage extends StatelessWidget {
       ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: _onDestinationSelected,
+        selectedIndex: navigationShell.currentIndex,
         indicatorColor: theme.colorScheme.secondary.withValues(alpha: 0.24),
         destinations: const [
           // Here, the items of BottomNavigationBar are hard coded. In a real

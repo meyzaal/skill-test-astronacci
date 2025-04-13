@@ -3,5 +3,305 @@
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"
+    },
+    "signInEmailLabel": "Email",
+    "@signInEmailLabel": {
+        "description": "Text shown in the Email field of the Sign In Page"
+    },
+    "signInEmailInvalidError": "Invalid email",
+    "@signInEmailInvalidError": {
+        "description": "Text shown in the Sign In Page when the user enters an invalid email"
+    },
+    "signInEmailRequiredError": "Email is required",
+    "@signInEmailRequiredError": {
+        "description": "Text shown in the Sign In Page when the user enters an invalid email"
+    },
+    "signInPasswordLabel": "Password",
+    "@signInPasswordLabel": {
+        "description": "Text shown in the Password field of the Sign In Page"
+    },
+    "signInPasswordRequiredError": "Password is required",
+    "@signInPasswordRequiredError": {
+        "description": "Text shown in the Sign In Page when the user enters an invalid password"
+    },
+    "signInShowPasswordLabel": "Show password",
+    "@signInShowPasswordLabel": {
+        "description": "Text shown in the Sign In Page when the user wants to show the password"
+    },
+    "signInSubmitButtonText": "Sign In",
+    "@signInSubmitButtonText": {
+        "description": "Text shown in the Sign In Button of the Sign In Page"
+    },
+    "signInInvalidCredentialsError": "Invalid email or password",
+    "@signInInvalidCredentialsError": {
+        "description": "Text shown in the Sign In Page when the user enters an invalid email or password"
+    },
+    "signInUnknownError": "An unknown error occurred",
+    "@signInUnknownError": {
+        "description": "Text shown in the Sign In Page when the user enters an unknown error"
+    },
+    "signInSuccessMessage": "Successfully signed in",
+    "@signInSuccessMessage": {
+        "description": "Text shown in the Sign In Page when the user successfully signs in"
+    },
+    "signInCreateAccountButtonText": "Create an account",
+    "@signInCreateAccountButtonText": {
+        "description": "Text shown in the Sign In Page when the user wants to create an account"
+    },
+    "signInForgotPasswordButtonText": "Forgot password?",
+    "@signInForgotPasswordButtonText": {
+        "description": "Text shown in the Sign In Page when the user wants to reset their password"
+    },
+    "signUpAppBarTitle": "Sign Up",
+    "@signUpAppBarTitle": {
+        "description": "Text shown in the AppBar of the Sign Up Page"
+    },
+    "signUpNameLabel": "Name",
+    "@signUpNameLabel": {
+        "description": "Text shown in the Name field of the Sign Up Page"
+    },
+    "signUpNameRequiredError": "Name is required",
+    "@signUpNameRequiredError": {
+        "description": "Text shown in the Sign Up Page when the user enters an empty name"
+    },
+    "signUpNameInvalidError": "Invalid name",
+    "@signUpNameInvalidError": {
+        "description": "Text shown in the Sign Up Page when the user enters an invalid name"
+    },
+    "signUpEmailLabel": "Email",
+    "@signUpEmailLabel": {
+        "description": "Text shown in the Email field of the Sign Up Page"
+    },
+    "signUpEmailRequiredError": "Email is required",
+    "@signUpEmailRequiredError": {
+        "description": "Text shown in the Sign Up Page when the user enters an empty email"
+    },
+    "signUpEmailInvalidError": "Invalid email",
+    "@signUpEmailInvalidError": {
+        "description": "Text shown in the Sign Up Page when the user enters an invalid email"
+    },
+    "signUpPasswordLabel": "Password",
+    "@signUpPasswordLabel": {
+        "description": "Text shown in the Password field of the Sign Up Page"
+    },
+    "signUpPasswordHelper": "Password must be at least 6 characters long, contain at least one uppercase letter, one lowercase letter, and one number",
+    "@signUpPasswordHelper": {
+        "description": "Text shown in the Sign Up Page when the user enters a password"
+    },
+    "signUpPasswordRequiredError": "Password is required",
+    "@signUpPasswordRequiredError": {
+        "description": "Text shown in the Sign Up Page when the user enters an empty password"
+    },
+    "signUpPasswordInvalidError": "Weak password",
+    "@signUpPasswordInvalidError": {
+        "description": "Text shown in the Sign Up Page when the user enters an invalid password"
+    },
+    "signUpConfirmedPasswordLabel": "Confirmed Password",
+    "@signUpConfirmedPasswordLabel": {
+        "description": "Text shown in the Confirmed Password field of the Sign Up Page"
+    },
+    "signUpConfirmedPasswordInvalidError": "Passwords do not match",
+    "@signUpConfirmedPasswordInvalidError": {
+        "description": "Text shown in the Sign Up Page when the user enters a confirmed password that does not match the password"
+    },
+    "signUpShowPasswordLabel": "Show password",
+    "@signUpShowPasswordLabel": {
+        "description": "Text shown in the Sign Up Page when the user wants to show the password"
+    },
+    "signUpSubmitButtonText": "Sign Up",
+    "@signUpSubmitButtonText": {
+        "description": "Text shown in the Sign Up Button of the Sign Up Page"
+    },
+    "signUpSuccessMessage": "Successfully signed up",
+    "@signUpSuccessMessage": {
+        "description": "Text shown in the Sign Up Page when the user successfully signs up"
+    },
+    "signUpEmailAlreadyInUseError": "Email already in use",
+    "@signUpEmailAlreadyInUseError": {
+        "description": "Text shown in the Sign Up Page when the user enters an email that is already in use"
+    },
+    "signUpUnknownError": "An unknown error occurred",
+    "@signUpUnknownError": {
+        "description": "Text shown in the Sign Up Page when the user enters an unknown error"
+    },
+    "forgotPasswordAppBarTitle": "Forgot Password",
+    "@forgotPasswordAppBarTitle": {
+        "description": "Text shown in the AppBar of the Forgot Password Page"
+    },
+    "forgotPasswordEmailLabel": "Email",
+    "@forgotPasswordEmailLabel": {
+        "description": "Text shown in the Email field of the Forgot Password Page"
+    },
+    "forgotPasswordEmailRequiredError": "Email is required",
+    "@forgotPasswordEmailRequiredError": {
+        "description": "Text shown in the Forgot Password Page when the user enters an empty email"
+    },
+    "forgotPasswordEmailInvalidError": "Invalid email",
+    "@forgotPasswordEmailInvalidError": {
+        "description": "Text shown in the Forgot Password Page when the user enters an invalid email"
+    },
+    "forgotPasswordSubmitButtonText": "Submit",
+    "@forgotPasswordSubmitButtonText": {
+        "description": "Text shown in the Submit Button of the Forgot Password Page"
+    },
+    "forgotPasswordUserNotFoundError": "User not found",
+    "@forgotPasswordUserNotFoundError": {
+        "description": "Text shown in the Forgot Password Page when the user enters an email that is not found"
+    },
+    "forgotPasswordUnknownError": "An unknown error occurred",
+    "@forgotPasswordUnknownError": {
+        "description": "Text shown in the Forgot Password Page when the user enters an unknown error"
+    },
+    "resetPasswordAppBarTitle": "Reset Password",
+    "@resetPasswordAppBarTitle": {
+        "description": "Text shown in the AppBar of the Reset Password Page"
+    },
+    "resetPasswordPasswordLabel": "Password",
+    "@resetPasswordPasswordLabel": {
+        "description": "Text shown in the Password field of the Reset Password Page"
+    },
+    "resetPasswordPasswordHelper": "Password must be at least 6 characters long, contain at least one uppercase letter, one lowercase letter, and one number",
+    "@resetPasswordPasswordHelper": {
+        "description": "Text shown in the Reset Password Page when the user enters a password"
+    },
+    "resetPasswordPasswordRequiredError": "Password is required",
+    "@resetPasswordPasswordRequiredError": {
+        "description": "Text shown in the Reset Password Page when the user enters an empty password"
+    },
+    "resetPasswordPasswordInvalidError": "Weak password",
+    "@resetPasswordPasswordInvalidError": {
+        "description": "Text shown in the Reset Password Page when the user enters an invalid password"
+    },
+    "resetPasswordConfirmedPasswordLabel": "Confirmed Password",
+    "@resetPasswordConfirmedPasswordLabel": {
+        "description": "Text shown in the Confirmed Password field of the Reset Password Page"
+    },
+    "resetPasswordConfirmedPasswordInvalidError": "Passwords do not match",
+    "@resetPasswordConfirmedPasswordInvalidError": {
+        "description": "Text shown in the Reset Password Page when the user enters a confirmed password that does not match the password"
+    },
+    "resetPasswordShowPasswordLabel": "Show password",
+    "@resetPasswordShowPasswordLabel": {
+        "description": "Text shown in the Reset Password Page when the user wants to show the password"
+    },
+    "resetPasswordSubmitButtonText": "Submit",
+    "@resetPasswordSubmitButtonText": {
+        "description": "Text shown in the Submit Button of the Reset Password Page"
+    },
+    "resetPasswordInvalidTokenError": "Invalid token",
+    "@resetPasswordInvalidTokenError": {
+        "description": "Text shown in the Reset Password Page when the user enters an invalid token"
+    },
+    "resetPasswordUnknownError": "An unknown error occurred",
+    "@resetPasswordUnknownError": {
+        "description": "Text shown in the Reset Password Page when the user enters an unknown error"
+    },
+    "resetPasswordSuccessMessage": "Password reset successfully",
+    "@resetPasswordSuccessMessage": {
+        "description": "Text shown in the Reset Password Page when the user successfully resets their password"
+    },
+    "usersAppBarTitle": "Users",
+    "@usersAppBarTitle": {
+        "description": "Text shown in the AppBar of the Users Page"
+    },
+    "usersFailureMessage": "Failed to load users",
+    "@usersFailureMessage": {
+        "description": "Text shown in the Users Page when the user fails to load users"
+    },
+    "usersEmptyMessage": "No users found",
+    "@usersEmptyMessage": {
+        "description": "Text shown in the Users Page when the user has no users"
+    },
+    "usersSearchHint": "Search users",
+    "@usersSearchHint": {
+        "description": "Text shown in the Search field of the Users Page"
+    },
+    "userDetailsAppBarTitle": "User Details",
+    "@userDetailsAppBarTitle": {
+        "description": "Text shown in the AppBar of the User Details Page"
+    },
+    "userDetailsFailureMessage": "Failed to load user details",
+    "@userDetailsFailureMessage": {
+        "description": "Text shown in the User Details Page when the user fails to load their details"
+    },
+    "userDetailsNameLabel": "Name",
+    "@userDetailsNameLabel": {
+        "description": "Text shown in the Name field of the User Details Page"
+    },
+    "userDetailsEmailLabel": "Email",
+    "@userDetailsEmailLabel": {
+        "description": "Text shown in the Email field of the User Details Page"
+    },
+    "userDetailsBioLabel": "Bio",
+    "@userDetailsBioLabel": {
+        "description": "Text shown in the Bio field of the User Details Page"
+    },
+    "profileAppBarTitle": "Profile",
+    "@profileAppBarTitle": {
+        "description": "Text shown in the AppBar of the Profile Page"
+    },
+    "profileFailureMessage": "Failed to load profile",
+    "@profileFailureMessage": {
+        "description": "Text shown in the Profile Page when the user fails to load their profile"
+    },
+    "profileNameLabel": "Name",
+    "@profileNameLabel": {
+        "description": "Text shown in the Name field of the Profile Page"
+    },
+    "profileEmailLabel": "Email",
+    "@profileEmailLabel": {
+        "description": "Text shown in the Email field of the Profile Page"
+    },
+    "profileBioLabel": "Bio",
+    "@profileBioLabel": {
+        "description": "Text shown in the Bio field of the Profile Page"
+    },
+    "profileEditButtonText": "Edit profile",
+    "@profileEditButtonText": {
+        "description": "Text shown in the Edit Button of the Profile Page"
+    },
+    "editProfileAppBarTitle": "Edit Profile",
+    "@editProfileAppBarTitle": {
+        "description": "Text shown in the AppBar of the Edit Profile Page"
+    },
+    "editProfileNameLabel": "Name",
+    "@editProfileNameLabel": {
+        "description": "Text shown in the Name field of the Edit Profile Page"
+    },
+    "editProfileBioLabel": "Bio",
+    "@editProfileBioLabel": {
+        "description": "Text shown in the Bio field of the Edit Profile Page"
+    },
+    "editProfileSaveButtonText": "Save",
+    "@editProfileSaveButtonText": {
+        "description": "Text shown in the Save Button of the Edit Profile Page"
+    },
+    "editProfileSuccessMessage": "Profile updated successfully",
+    "@editProfileSuccessMessage": {
+        "description": "Text shown in the Edit Profile Page when the user successfully updates their profile"
+    },
+    "editProfileFailureMessage": "Failed to update profile",
+    "@editProfileFailureMessage": {
+        "description": "Text shown in the Edit Profile Page when the user fails to update their profile"
+    },
+    "updateAvatarTitle": "Update Avatar",
+    "@updateAvatarTitle": {
+        "description": "Text shown in the Title of the Update Avatar Bottom Sheet"
+    },
+    "updateAvatarFailureMessage": "Failed to update avatar",
+    "@updateAvatarFailureMessage": {
+        "description": "Text shown in the Update Avatar Bottom Sheet when the user fails to update their avatar"
+    },
+    "updateAvatarSuccessMessage": "Avatar updated successfully",
+    "@updateAvatarSuccessMessage": {
+        "description": "Text shown in the Update Avatar Bottom Sheet when the user successfully updates their avatar"
+    },
+    "settingsAppBarTitle": "Settings",
+    "@settingsAppBarTitle": {
+        "description": "Text shown in the AppBar of the Settings Page"
+    },
+    "settingsSignOutButtonText": "Sign Out",
+    "@settingsSignOutButtonText": {
+        "description": "Text shown in the Settings Page when the user wants to sign out"
     }
 }

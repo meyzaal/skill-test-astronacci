@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:stream_listener/stream_listener.dart';
 import 'package:user_app_mobile/authentication/authentication.dart';
+import 'package:user_app_mobile/forgot_password/forgot_password.dart';
 import 'package:user_app_mobile/home/home.dart';
 import 'package:user_app_mobile/profile/profile.dart';
+import 'package:user_app_mobile/reset_password/reset_password.dart';
+import 'package:user_app_mobile/settings/settings.dart';
 import 'package:user_app_mobile/sign_in/sign_in.dart';
 import 'package:user_app_mobile/sign_up/sign_up.dart';
+import 'package:user_app_mobile/user_details/user_details.dart';
 import 'package:user_app_mobile/users/users.dart';
 
 part 'router.g.dart';
@@ -37,11 +41,30 @@ class AppRouter {
       final signUpLoc = const SignUpRoute().location;
       final goingToSignUp = state.matchedLocation == signUpLoc;
 
+      final forgotPasswordLoc = const ForgotPasswordRoute().location;
+      final goingToForgotPassword = state.matchedLocation == forgotPasswordLoc;
+
+      final resetPasswordLoc =
+          ResetPasswordRoute(state.extra as String? ?? '').location;
+      final goingToResetPassword = state.matchedLocation == resetPasswordLoc;
+
       // the user is not signed in and not headed to /sign-in, they need to sign in
-      if (!signedIn && !goingToSignIn) return signInLoc;
+      if (!signedIn &&
+          !goingToSignIn &&
+          !goingToSignUp &&
+          !goingToForgotPassword &&
+          !goingToResetPassword) {
+        return signInLoc;
+      }
 
       // the user is logged in and headed to /sign-in, send them to the home page
-      if (signedIn && (goingToSignIn || goingToSignUp)) return usersLoc;
+      if (signedIn &&
+          (goingToSignIn ||
+              goingToSignUp ||
+              goingToForgotPassword ||
+              goingToResetPassword)) {
+        return usersLoc;
+      }
 
       // no need to redirect at all
       return null;
@@ -71,11 +94,38 @@ class SignUpRoute extends GoRouteData {
   Widget build(BuildContext context, GoRouterState state) => const SignUpPage();
 }
 
+@TypedGoRoute<ForgotPasswordRoute>(
+  path: '/forgot-password',
+  routes: [TypedGoRoute<ResetPasswordRoute>(path: 'reset-password')],
+)
+class ForgotPasswordRoute extends GoRouteData {
+  const ForgotPasswordRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const ForgotPasswordPage();
+}
+
+class ResetPasswordRoute extends GoRouteData {
+  const ResetPasswordRoute(this.$extra);
+
+  final String $extra;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      ResetPasswordPage(resetToken: $extra);
+}
+
 @TypedStatefulShellRoute<HomeRoute>(
   branches: [
     TypedStatefulShellBranch<BranchUsersData>(
       routes: [
-        TypedGoRoute<UsersRoute>(path: '/users'),
+        TypedGoRoute<UsersRoute>(
+          path: '/users',
+          routes: [
+            TypedGoRoute<UserDetailsRoute>(path: ':userId'),
+          ],
+        ),
       ],
     ),
     TypedStatefulShellBranch<BranchProfileData>(
@@ -97,7 +147,7 @@ class HomeRoute extends StatefulShellRouteData {
 
   static const String $restorationScopeId = 'home';
 
-  static Widget $navigationContainerBuilder(
+  static Widget $navigatorContainerBuilder(
     BuildContext context,
     StatefulNavigationShell navigationShell,
     List<Widget> children,
@@ -118,6 +168,16 @@ class UsersRoute extends GoRouteData {
   Widget build(BuildContext context, GoRouterState state) => const UsersPage();
 }
 
+class UserDetailsRoute extends GoRouteData {
+  const UserDetailsRoute(this.userId);
+
+  final String userId;
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      UserDetailsPage(userId: userId);
+}
+
 class BranchProfileData extends StatefulShellBranchData {}
 
 class ProfileRoute extends GoRouteData {
@@ -126,4 +186,14 @@ class ProfileRoute extends GoRouteData {
   @override
   Widget build(BuildContext context, GoRouterState state) =>
       const ProfilePage();
+}
+
+
+@TypedGoRoute<SettingsRoute>(path: '/settings')
+class SettingsRoute extends GoRouteData {
+  const SettingsRoute();
+
+  @override
+  Widget build(BuildContext context, GoRouterState state) =>
+      const SettingsPage();
 }
