@@ -47,7 +47,7 @@ router.get('/users', authMiddleware, async (req: AuthRequest, res: Response, nex
         email: user.email,
         avatar: user.avatar,
         bio: user.bio,
-        isMe: user._id.toString() === req.user?._id
+        isMe: user._id.toString() === req.user?._id?.toString()
       })),
       pagination: {
         total,
@@ -176,7 +176,7 @@ router.get('/users/:id', authMiddleware, async (req: AuthRequest, res: Response,
         email: user.email,
         avatar: user.avatar,
         bio: user.bio,
-        isMe: user._id.toString() === req.user?._id
+        isMe: user._id.toString() === req.user?._id?.toString()
       }
     });
   } catch (error) {
@@ -199,7 +199,8 @@ router.get('users/me', authMiddleware, async (req: AuthRequest, res: Response, n
         name: user.name,
         email: user.email,
         avatar: user.avatar,
-        bio: user.bio
+        bio: user.bio,
+        isMe: user._id.toString() === req.user?._id?.toString()
       }
     });
   } catch (error) {
