@@ -9,6 +9,7 @@ class UserDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return BlocBuilder<UserDetailsCubit, UserDetailsState>(
       builder: (context, state) {
         return CustomScrollView(
@@ -34,14 +35,22 @@ class UserDetailsView extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 64,
-                      backgroundImage: CachedNetworkImageProvider(
+                      foregroundImage: CachedNetworkImageProvider(
                         state.user.avatar,
+                      ),
+                      child: Icon(
+                        Icons.person,
+                        size: 64,
+                        color: theme.colorScheme.onPrimaryContainer,
                       ),
                     ),
                     const SizedBox(height: 24),
                     ListTile(
                       title: Text(context.l10n.userDetailsNameLabel),
                       subtitle: Text(state.user.name),
+                      trailing: state.user.isMe
+                          ? Text('(${context.l10n.userDetailsYouLabel})')
+                          : null,
                     ),
                     ListTile(
                       title: Text(context.l10n.userDetailsEmailLabel),

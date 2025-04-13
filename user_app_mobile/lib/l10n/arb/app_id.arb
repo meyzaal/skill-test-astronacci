@@ -200,9 +200,21 @@
     "@resetPasswordSuccessMessage": {
         "description": "Text yang ditampilkan di halaman Atur ulang kata sandi di pesan sukses"
     },
+    "homeUsersTabLabel": "Pengguna",
+    "@homeUsersTabLabel": {
+        "description": "Text yang ditampilkan di halaman Pengguna di tab Pengguna"
+    },
+    "homeProfileTabLabel": "Profil",
+    "@homeProfileTabLabel": {
+        "description": "Text yang ditampilkan di halaman Profil di tab Profil"
+    },
     "usersAppBarTitle": "Pengguna",
     "@usersAppBarTitle": {
         "description": "Text yang ditampilkan di AppBar halaman Pengguna"
+    },
+    "usersYouLabel": "Anda",
+    "@usersYouLabel": {
+        "description": "Text yang ditampilkan di halaman Pengguna di label Anda"
     },
     "usersFailureMessage": "Gagal memuat pengguna",
     "@usersFailureMessage": {
@@ -223,6 +235,10 @@
     "userDetailsFailureMessage": "Gagal memuat detail pengguna",
     "@userDetailsFailureMessage": {
         "description": "Text yang ditampilkan di halaman Detail pengguna di pesan kesalahan Gagal memuat detail pengguna"
+    },
+    "userDetailsYouLabel": "Anda",
+    "@userDetailsYouLabel": {
+        "description": "Text yang ditampilkan di halaman Detail pengguna di label Anda"
     },
     "userDetailsNameLabel": "Nama",
     "@userDetailsNameLabel": {
@@ -303,5 +319,33 @@
     "settingsSignOutButtonText": "Keluar",
     "@settingsSignOutButtonText": {
         "description": "Text yang ditampilkan di halaman Pengaturan di tombol Keluar"
+    },
+    "settingsLanguageTitle": "Bahasa",
+    "@settingsLanguageTitle": {
+        "description": "Text yang ditampilkan di halaman Pengaturan di label Bahasa"
+    },
+    "settingsLanguageOption": "{option, select, en{Inggris} id{Bahasa Indonesia} other{Bahasa}}",
+    "@settingsLanguageOption": {
+        "description": "Text yang ditampilkan di halaman Pengaturan di pilihan Bahasa",
+        "placeholders": {
+            "option": {
+                "type": "String",
+                "example": "en"
+            }
+        }
+    },
+    "settingsThemeTitle": "Tema",
+    "@settingsThemeTitle": {
+        "description": "Text yang ditampilkan di halaman Pengaturan di label Tema"
+    },
+    "settingsThemeOption": "{option, select, light{Terang} dark{Gelap} system{Sistem} other{Tema}}",
+    "@settingsThemeOption": {
+        "description": "Text yang ditampilkan di halaman Pengaturan di pilihan Tema",
+        "placeholders": {
+            "option": {
+                "type": "String",
+                "example": "light"
+            }
+        }
     }
 }

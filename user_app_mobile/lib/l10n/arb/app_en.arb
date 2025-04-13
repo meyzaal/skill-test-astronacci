@@ -200,9 +200,21 @@
     "@resetPasswordSuccessMessage": {
         "description": "Text shown in the Reset Password Page when the user successfully resets their password"
     },
+    "homeUsersTabLabel": "Users",
+    "@homeUsersTabLabel": {
+        "description": "Text shown in the Users Tab of the Home Page"
+    },
+    "homeProfileTabLabel": "Profile",
+    "@homeProfileTabLabel": {
+        "description": "Text shown in the Profile Tab of the Home Page"
+    },
     "usersAppBarTitle": "Users",
     "@usersAppBarTitle": {
         "description": "Text shown in the AppBar of the Users Page"
+    },
+    "usersYouLabel": "You",
+    "@usersYouLabel": {
+        "description": "Text shown in the Users Page when the user is the current user"
     },
     "usersFailureMessage": "Failed to load users",
     "@usersFailureMessage": {
@@ -223,6 +235,10 @@
     "userDetailsFailureMessage": "Failed to load user details",
     "@userDetailsFailureMessage": {
         "description": "Text shown in the User Details Page when the user fails to load their details"
+    },
+    "userDetailsYouLabel": "You",
+    "@userDetailsYouLabel": {
+        "description": "Text shown in the User Details Page when the user is the current user"
     },
     "userDetailsNameLabel": "Name",
     "@userDetailsNameLabel": {
@@ -303,5 +319,33 @@
     "settingsSignOutButtonText": "Sign Out",
     "@settingsSignOutButtonText": {
         "description": "Text shown in the Settings Page when the user wants to sign out"
+    },
+    "settingsLanguageTitle": "Language",
+    "@settingsLanguageTitle": {
+        "description": "Text shown in the Language field of the Settings Page"
+    },
+    "settingsLanguageOption": "{option, select, en{English} id{Bahasa Indonesia} other{Language}}",
+    "@settingsLanguageOption": {
+        "description": "Text shown in the Language field of the Settings Page when the user selects a language",
+        "placeholders": {
+            "option": {
+                "type": "String",
+                "example": "en"
+            }
+        }
+    },
+    "settingsThemeTitle": "Theme",
+    "@settingsThemeTitle": {
+        "description": "Text shown in the Theme field of the Settings Page"
+    },
+    "settingsThemeOption": "{option, select, light{Light} dark{Dark} system{System} other{Theme}}",
+    "@settingsThemeOption": {
+        "description": "Text shown in the Theme field of the Settings Page when the user selects a theme",
+        "placeholders": {
+            "option": {
+                "type": "String",
+                "example": "light"
+            }
+        }
     }
 }

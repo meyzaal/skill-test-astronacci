@@ -11,6 +11,16 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              const SettingsRoute().push<void>(context);
+            },
+            icon: const Icon(Icons.settings),
+          ),
+        ],
+      ),
       body: LayoutBuilder(
         builder: (context, constraints) {
           return BlocProvider(
@@ -35,11 +45,12 @@ class SignInPage extends StatelessWidget {
       ),
       bottomNavigationBar: BottomAppBar(
         child: OverflowBar(
+          alignment: MainAxisAlignment.spaceBetween,
           children: [
             TextButton(
               onPressed: () {
                 const ForgotPasswordRoute().push<void>(context);
-              // const ResetPasswordRoute('resetToken').push<void>(context);
+                // const ResetPasswordRoute('resetToken').push<void>(context);
               },
               child: Text(context.l10n.signInForgotPasswordButtonText),
             ),

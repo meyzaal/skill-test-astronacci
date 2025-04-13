@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:user_app_mobile/app/app.dart';
 import 'package:user_app_mobile/authentication/authentication.dart';
 import 'package:user_app_mobile/l10n/l10n.dart';
+import 'package:user_app_mobile/language/language.dart';
+import 'package:user_app_mobile/theme_mode/theme_mode.dart';
 import 'package:user_repository/user_repository.dart';
 
 class App extends StatelessWidget {
@@ -39,6 +41,8 @@ class App extends StatelessWidget {
             lazy: false,
             create: (context) => _authenticationBloc,
           ),
+          BlocProvider(create: (context) => LanguageCubit()),
+          BlocProvider(create: (context) => ThemeModeCubit()),
         ],
         child: AppView(routerConfig: _router),
       ),
@@ -57,10 +61,14 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const theme = AppTheme();
+    final locale = context.select((LanguageCubit cubit) => cubit.state);
+    final themeMode = context.select((ThemeModeCubit cubit) => cubit.state);
 
     return MaterialApp.router(
       theme: theme.light(),
       darkTheme: theme.dark(),
+      themeMode: themeMode,
+      locale: locale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       routerConfig: routerConfig,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 final class AppTheme {
   const AppTheme();
 
-  static const _seedColor = Color(0xFF800000);
+  static const _seedColor = Color(0xFFF4C42B);
 
   static final _lightNeutralColors = ColorScheme.fromSeed(
     seedColor: _seedColor,
@@ -20,7 +20,7 @@ final class AppTheme {
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
         seedColor: _seedColor,
-        dynamicSchemeVariant: DynamicSchemeVariant.fidelity,
+        dynamicSchemeVariant: DynamicSchemeVariant.expressive,
       ).copyWith(
         inverseSurface: _lightNeutralColors.inverseSurface,
         onInverseSurface: _lightNeutralColors.onInverseSurface,
@@ -48,7 +48,7 @@ final class AppTheme {
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
         seedColor: _seedColor,
-        dynamicSchemeVariant: DynamicSchemeVariant.fidelity,
+        dynamicSchemeVariant: DynamicSchemeVariant.expressive,
         brightness: Brightness.dark,
       ).copyWith(
         inverseSurface: _darkNeutralColors.inverseSurface,

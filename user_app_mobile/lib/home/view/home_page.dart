@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:user_app_mobile/l10n/l10n.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -28,7 +29,7 @@ class HomePage extends StatelessWidget {
         onDestinationSelected: _onDestinationSelected,
         selectedIndex: navigationShell.currentIndex,
         indicatorColor: theme.colorScheme.secondary.withValues(alpha: 0.24),
-        destinations: const [
+        destinations: [
           // Here, the items of BottomNavigationBar are hard coded. In a real
           // world scenario, the items would most likely be generated from the
           // branches of the shell route, which can be fetched using
@@ -36,12 +37,12 @@ class HomePage extends StatelessWidget {
           NavigationDestination(
             icon: Icon(Icons.groups_3_outlined),
             selectedIcon: Icon(Icons.groups_3_rounded),
-            label: 'Users',
+            label: context.l10n.homeUsersTabLabel,
           ),
           NavigationDestination(
             icon: Icon(Icons.account_circle_outlined),
             selectedIcon: Icon(Icons.account_circle_rounded),
-            label: 'Profile',
+            label: context.l10n.homeProfileTabLabel,
           ),
         ],
       ),

@@ -48,12 +48,16 @@ class AppRouter {
           ResetPasswordRoute(state.extra as String? ?? '').location;
       final goingToResetPassword = state.matchedLocation == resetPasswordLoc;
 
+      final settingsLoc = const SettingsRoute().location;
+      final goingToSettings = state.matchedLocation == settingsLoc;
+
       // the user is not signed in and not headed to /sign-in, they need to sign in
       if (!signedIn &&
           !goingToSignIn &&
           !goingToSignUp &&
           !goingToForgotPassword &&
-          !goingToResetPassword) {
+          !goingToResetPassword &&
+          !goingToSettings) {
         return signInLoc;
       }
 
@@ -62,7 +66,8 @@ class AppRouter {
           (goingToSignIn ||
               goingToSignUp ||
               goingToForgotPassword ||
-              goingToResetPassword)) {
+              goingToResetPassword ||
+              goingToSettings)) {
         return usersLoc;
       }
 
@@ -192,6 +197,7 @@ class ProfileRoute extends GoRouteData {
 @TypedGoRoute<SettingsRoute>(path: '/settings')
 class SettingsRoute extends GoRouteData {
   const SettingsRoute();
+
 
   @override
   Widget build(BuildContext context, GoRouterState state) =>

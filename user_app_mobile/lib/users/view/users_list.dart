@@ -78,6 +78,9 @@ class _UsersListState extends State<UsersList> {
                             color: theme.colorScheme.onPrimaryContainer,
                           ),
                         ),
+                        trailing: user.isMe
+                            ? Text('(${context.l10n.usersYouLabel})')
+                            : null,
                         onTap: () {
                           UserDetailsRoute(user.id).push<void>(context);
                         },
