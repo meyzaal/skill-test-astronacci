@@ -160,10 +160,15 @@ router.put('/users/me/avatar', authMiddleware, upload.single('avatar'), async (r
   }
 });
 
-// Get User Detail
-router.get('/users/:id', authMiddleware, async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
+// Get current user profile
+router.get('/users/me', authMiddleware, async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const user = await User.findById(req.params.id).select('-password');
+    if (!req.user) {
+      res.status(401).json({ message: 'Unauthorized' });
+      return;
+    }
+
+    const user = await User.findById(req.user._id).select('-password -resetToken -resetTokenExpiry');
     if (!user) {
       res.status(404).json({ message: 'User not found' });
       return;
@@ -175,8 +180,7 @@ router.get('/users/:id', authMiddleware, async (req: AuthRequest, res: Response,
         name: user.name,
         email: user.email,
         avatar: user.avatar,
-        bio: user.bio,
-        isMe: user._id.toString() === req.user?._id?.toString()
+        bio: user.bio
       }
     });
   } catch (error) {
@@ -184,10 +188,10 @@ router.get('/users/:id', authMiddleware, async (req: AuthRequest, res: Response,
   }
 });
 
-// Get current user profile
-router.get('users/me', authMiddleware, async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
+// Get User Detail
+router.get('/users/:id', authMiddleware, async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const user = await User.findById(req.user?._id).select('-password -resetToken -resetTokenExpiry');
+    const user = await User.findById(req.params.id).select('-password');
     if (!user) {
       res.status(404).json({ message: 'User not found' });
       return;
