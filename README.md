@@ -5,6 +5,12 @@ This repository contains the source code for the skill test project for Astronac
 - **user-app-backend/**: Backend REST API built using Express.js with TypeScript and MongoDB.
 - **user-app-mobile/**: Mobile application built using Flutter with state management.
 
+## 📱 Download APK
+
+You can download the latest APK version of the application here:
+
+[📥 Download APK](https://drive.google.com/file/d/16GV5yptfbhCtzbjWmhFPpAB_WG-1KLHm/view?usp=sharing)
+
 ## 📌 Features
 
 The application includes the following features:
@@ -23,12 +29,19 @@ The application includes the following features:
 - JWT Authentication
 - Multer for file uploads
 - Dotenv for environment configuration
+- Validation middleware for request handling
+- Error handling middleware
+- RESTful API endpoints
 
 ### Mobile (user-app-mobile/)
 - Flutter
 - State Management BloC
 - API Integration
 - Image Picker and Cropper
+- Theme support
+- Authentication flow
+- User profile management
+- User list with search functionality
 
 ## 🚀 Getting Started
 
@@ -70,8 +83,23 @@ https://user-app-api.onrender.com/
 ```
 skill-test-astronacci/
 ├── user-app-backend/     # Express.js backend (TypeScript)
+│   ├── src/
+│   │   ├── controllers/  # API controllers
+│   │   ├── middlewares/  # Custom middlewares
+│   │   ├── models/       # Database models
+│   │   ├── routes/       # API routes
+│   │   └── utils/        # Utility functions
 ├── user-app-mobile/      # Flutter frontend app
-└── README.md             # Project overview and setup guide
+│   ├── lib/
+│   │   ├── app/         # App configuration
+│   │   ├── authentication/ # Auth features
+│   │   ├── home/        # Home screen
+│   │   ├── profile/     # Profile features
+│   │   ├── sign_in/     # Sign in features
+│   │   ├── sign_up/     # Sign up features
+│   │   └── users/       # User list features
+│   └── packages/        # Custom packages
+└── README.md            # Project overview and setup guide
 ```
 
 ## 🧑‍💻 Author
